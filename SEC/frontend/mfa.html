@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFA Verification - Secure Auth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-card">
+            <h2>📱 Multi-Factor Authentication</h2>
+            <p>Enter the 6-digit code from your authenticator app</p>
+            
+            <form id="mfaForm">
+                <div class="form-group">
+                    <label for="totpCode">TOTP Code</label>
+                    <input type="text" id="totpCode" name="totpCode" maxlength="6" pattern="[0-9]{6}" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="verifyBtn">
+                    Verify
+                </button>
+            </form>
+            
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('mfaForm').addEventListener('submit', handleMFAVerification);
+    </script>
+</body>
+</html>
