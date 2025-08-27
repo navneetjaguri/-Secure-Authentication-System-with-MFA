@@ -43,18 +43,6 @@ def send_reset_email(user, token):
             'Password Reset Request',
             recipients=[user.email]
         )
-        reset_url = f"https://secure-authentication-system-with-2f8tzqvqg.vercel.app{token.token}"
-        msg.body = f'''
-        Hi {user.username},
-
-        You requested a password reset. Click the link below to reset your password:
-        {reset_url}
-
-        This link will expire in 15 minutes.
-
-        If you didn't request this, please ignore this email.
-        '''
-        mail.send(msg)
         return True
     except Exception as e:
         print(f"Error sending email: {e}")
@@ -288,4 +276,5 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
