@@ -43,7 +43,7 @@ def send_reset_email(user, token):
             'Password Reset Request',
             recipients=[user.email]
         )
-        reset_url = f"http://localhost:5000/reset-password?token={token.token}"
+        reset_url = f"https://secure-authentication-system-with-2f8tzqvqg.vercel.app{token.token}"
         msg.body = f'''
         Hi {user.username},
 
@@ -288,3 +288,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True, host='0.0.0.0', port=5000)
+
