@@ -1,0 +1,14 @@
+{
+  "name": "secure-auth-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Secure Authentication System with MFA",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo 'No dev server needed for static site'",
+    "build": "echo 'No build needed for static site'",
+    "start": "echo 'Static site'"
+  },
+  "keywords": ["authentication", "mfa", "static"],
+  "author": "",
+  "license": "ISC"
+}
