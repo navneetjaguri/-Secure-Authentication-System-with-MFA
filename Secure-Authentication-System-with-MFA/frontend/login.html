@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Secure Auth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-card">
+            <h2>🔐 Login</h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    Login
+                </button>
+            </form>
+
+            <div id="mfaSection" style="display: none;">
+                <h3>🔐 Multi-Factor Authentication</h3>
+                <p>Enter the 6-digit code from your authenticator app</p>
+
+                <form id="mfaForm">
+                    <div class="form-group">
+                        <label for="totpCode">TOTP Code</label>
+                        <div class="code-input">
+                            <input type="text" maxlength="1" pattern="[0-9]" class="code-box" id="code1" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" class="code-box" id="code2" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" class="code-box" id="code3" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" class="code-box" id="code4" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" class="code-box" id="code5" required>
+                            <input type="text" maxlength="1" pattern="[0-9]" class="code-box" id="code6" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="verifyBtn">
+                        Verify
+                    </button>
+                </form>
+            </div>
+            
+            <div class="links">
+                <a href="signup.html">Don't have an account? Sign up</a>
+                <a href="reset.html">Forgot password?</a>
+            </div>
+            
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', handleLogin);
+        document.getElementById('mfaForm').addEventListener('submit', handleMFAVerification);
+
+        // Auto-advance for code inputs
+        const codeBoxes = document.querySelectorAll('.code-box');
+        codeBoxes.forEach((box, index) => {
+            box.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < codeBoxes.length - 1) {
+                    codeBoxes[index + 1].focus();
+                }
+            });
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    codeBoxes[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
